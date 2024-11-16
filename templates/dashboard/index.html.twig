@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <h1>Welcome, {{ app.user.firstName }}!</h1>
+    <a href="{{ path('app_logout') }}">Logout</a>
+    <p>This is your dashboard. Here, you can manage your account, view workouts, and more.</p>
+{% endblock %}
