@@ -1,47 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin Dashbord{% endblock %}
+{% block title %}Admin Dashboard{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="mt-4">Bienvenue sur le tableau de bord administrateur</h1>
+    <h1>Welcome to the Admin Dashboard</h1>
 
-        {# Section des statistiques #}
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <div class="card bg-primary text-white">
-                    <div class="card-body">
-                        <h4 class="card-title">Utilisateurs enregistrés</h4>
-                        <p class="card-text">Total d'utilisateurs enregistrés : 1500</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-success text-white">
-                    <div class="card-body">
-                        <h4 class="card-title">Nouveaux utilisateurs</h4>
-                        <p class="card-text">Nouveaux utilisateurs ce mois : 200</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-warning text-white">
-                    <div class="card-body">
-                        <h4 class="card-title">Commentaires non lus</h4>
-                        <p class="card-text">Commentaires non lus : 15</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <p>Here you can manage users, view reports, etc.</p>
 
-        {# Liens vers des sections de gestion #}
-        <div class="mt-5">
-            <h3>Gestion de l'application</h3>
-            <ul>
-                <li><a href="{{ path('user_list') }}">Gérer les utilisateurs</a></li>
-                <li><a href="{{ path('product_list') }}">Gérer les produits</a></li>
-                <li><a href="{{ path('order_list') }}">Gérer les commandes</a></li>
-            </ul>
-        </div>
-    </div>
+    <h2>Users:</h2>
+    <a href="{{ path('app_user_index') }}">Mangae Users</a>
 {% endblock %}
