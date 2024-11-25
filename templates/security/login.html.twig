@@ -1,110 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="login-container">
-            <h2 class="login-title">Login</h2>
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-            {% if error %}
-                <div class="alert alert-danger">
-                    {{ error.messageKey|trans(error.messageData, 'security') }}
-                </div>
-            {% endif %}
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
 
-            <form action="{{ path('app_login') }}" method="post" class="login-form">
-                <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}" required autofocus />
-                </div>
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="_password" class="form-control" required />
-                </div>
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-submit">Login</button>
-                </div>
-            </form>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
         </div>
-    </div>
 
-    <style>
-        /* Container global */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-image: url('https://static1.bigstockphoto.com/0/7/2/large1500/270519103.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 0 15px;
-        }
-
-        /* Conteneur du formulaire */
-        .login-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Titre de la page */
-        .login-title {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #2a5d84; /* Bleu nude */
-        }
-
-        /* Champ de formulaire */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            font-weight: bold;
-            color: #2a5d84;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            color: #333;
-        }
-
-        /* Bouton de soumission */
-        .btn-submit {
-            width: 100%;
-            padding: 10px;
-            background-color: #2a5d84;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-submit:hover {
-            background-color: #1a4f6e;
-        }
-
-        /* Alerte d'erreur */
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-    </style>
+        <button class="btn btn-lg btn-primary" type="submit">
+            Sign in
+        </button>
+    </form>
 {% endblock %}
