@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -45,17 +43,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $gender = null;
-
-    /**
-     * @var Collection<int, WorkoutPlan>
-     */
-    #[ORM\ManyToMany(targetEntity: WorkoutPlan::class, inversedBy: 'users')]
-    private Collection $Plans;
-
-    public function __construct()
-    {
-        $this->Plans = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -176,30 +163,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGender(?string $gender): static
     {
         $this->gender = $gender;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, WorkoutPlan>
-     */
-    public function getPlans(): Collection
-    {
-        return $this->Plans;
-    }
-
-    public function addPlan(WorkoutPlan $plan): static
-    {
-        if (!$this->Plans->contains($plan)) {
-            $this->Plans->add($plan);
-        }
-
-        return $this;
-    }
-
-    public function removePlan(WorkoutPlan $plan): static
-    {
-        $this->Plans->removeElement($plan);
 
         return $this;
     }
