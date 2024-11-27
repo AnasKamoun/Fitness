@@ -4,9 +4,10 @@
 
 {% block body %}
     <h1>Welcome to the Admin Dashboard</h1>
+    <a href="{{ path('app_logout') }}">Logout</a>
 
     <p>Here you can manage users, view reports, etc.</p>
 
-    <h2>Users:</h2>
     <a href="{{ path('app_user_index') }}">Mangae Users</a>
+    <a href="{{ path('app_workout_plan_index') }}">Mangae WorkoutPlans</a>
 {% endblock %}

@@ -31,15 +31,6 @@
                 <th>Exercises</th>
                 <td>{{ workout_plan.exercises }}</td>
             </tr>
-            <tr>
-                <th>Join</th>
-                <td>
-                    <form method="post" action="{{ path('workout_plan_join', {'id': workout_plan.id}) }}">
-                        <button type="submit" class="btn btn-primary">Join This Plan</button>
-                    </form>
-                </td>
-
-            </tr>
         </tbody>
     </table>
 

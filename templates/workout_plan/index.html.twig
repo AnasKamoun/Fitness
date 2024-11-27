@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>WorkoutPlan index</h1>
+    <a href="{{ path('app_admin_dashboard') }}">Admin Dashboard</a>
 
     <table class="table">
         <thead>
@@ -29,7 +30,6 @@
                 <td>
                     <a href="{{ path('app_workout_plan_show', {'id': workout_plan.id}) }}">show</a>
                     <a href="{{ path('app_workout_plan_edit', {'id': workout_plan.id}) }}">edit</a>
-                    <a href="{{ path('workout_plan_join', {'id': workout_plan.id}) }}">Join</a>
                 </td>
             </tr>
         {% else %}

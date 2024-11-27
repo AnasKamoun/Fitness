@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[Route('/workout/plan')]
+#[Route('admin/dashboard/workoutplan')]
 final class WorkoutPlanController extends AbstractController
 {
     #[Route(name: 'app_workout_plan_index', methods: ['GET'])]
@@ -79,20 +79,21 @@ final class WorkoutPlanController extends AbstractController
 
         return $this->redirectToRoute('app_workout_plan_index', [], Response::HTTP_SEE_OTHER);
     }
+    /*
+        #[Route('/{id}/join', name: 'workout_plan_join')]
+        public function join(WorkoutPlan $workoutPlan, UserInterface $user, EntityManagerInterface $entityManager): Response
+        {
+            if (!$user->getPlans()->contains($workoutPlan)) {
+                $user->addPlan($workoutPlan);
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-    #[Route('/{id}/join', name: 'workout_plan_join')]
-    public function join(WorkoutPlan $workoutPlan, UserInterface $user, EntityManagerInterface $entityManager): Response
-    {
-        if (!$user->getPlans()->contains($workoutPlan)) {
-            $user->addPlan($workoutPlan);
-            $entityManager->persist($user);
-            $entityManager->flush();
+                $this->addFlash('success', 'You have joined the workout plan!');
+            } else {
+                $this->addFlash('info', 'You are already part of this plan.');
+            }
 
-            $this->addFlash('success', 'You have joined the workout plan!');
-        } else {
-            $this->addFlash('info', 'You are already part of this plan.');
+            return $this->redirectToRoute('app_workout_plan_show', ['id' => $workoutPlan->getId()]);
         }
-
-        return $this->redirectToRoute('app_workout_plan_show', ['id' => $workoutPlan->getId()]);
-    }
+    */
 }
