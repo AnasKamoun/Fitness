@@ -4,132 +4,82 @@
 
 {% block body %}
     <style>
-        /* Style du fond */
         body {
-            background-image: url('https://static1.bigstockphoto.com/0/7/2/large1500/270519103.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            color: white;
-        }
-
-        /* Centrer le formulaire au milieu de la page */
-        .register-container {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Un fond semi-transparent pour améliorer la lisibilité */
+            height: 100vh;
+            margin: 0;
         }
-
-        .register-form {
-            background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent pour un contraste doux */
-            border-radius: 8px;
-            padding: 40px;
-            width: 100%;
-            max-width: 450px; /* Taille maximale du formulaire */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre légère autour du formulaire */
-        }
-
-        /* Espacement entre les champs de formulaire */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        /* Style des labels */
-        .form-group label {
-            font-size: 1.1em;
-            color: black; /* Couleur noire pour le texte des labels */
-            margin-bottom: 5px;
-        }
-
-        /* Champs de saisie */
-        .form-control {
-            background-color: #e0f2f1; /* Vert nude */
-            border: 1px solid #4caf50; /* Bordure verte */
-            color: #2c6f4d;
-            padding: 12px;
-            font-size: 1em;
-            border-radius: 5px;
-            width: 100%;
-        }
-
-        .form-control:focus {
-            border-color: #80e5d6; /* Vert clair au focus */
-            box-shadow: 0 0 5px rgba(128, 229, 214, 0.5);
-        }
-
-        /* Espacement entre le champ et le bouton */
-        .btn-primary {
-            background-color: #4caf50; /* Vert nude pour le bouton */
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 5px;
-            font-size: 1.2em;
-        }
-
-        .btn-primary:hover {
-            background-color: #45a049; /* Un peu plus foncé au survol */
-        }
-
-        /* Titre du formulaire */
-        h1 {
+        .register-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
             text-align: center;
-            font-size: 2.5em;
-            color: #4caf50; /* Vert nude pour le titre */
-            margin-bottom: 30px;
+        }
+        .register-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
         }
     </style>
 
     <div class="register-container">
-        <div class="register-form">
-            <h1>Register</h1>
+        <h1>Register</h1>
 
-            {{ form_start(registrationForm) }}
-
-            <div class="form-group">
-                {{ form_label(registrationForm.firstName) }}
-                {{ form_widget(registrationForm.firstName, { 'attr': { 'class': 'form-control' } }) }}
-                {{ form_errors(registrationForm.firstName) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(registrationForm.lastName) }}
-                {{ form_widget(registrationForm.lastName, { 'attr': { 'class': 'form-control' } }) }}
-                {{ form_errors(registrationForm.lastName) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(registrationForm.email) }}
-                {{ form_widget(registrationForm.email, { 'attr': { 'class': 'form-control' } }) }}
-                {{ form_errors(registrationForm.email) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(registrationForm.plainPassword) }}
-                {{ form_widget(registrationForm.plainPassword, { 'attr': { 'class': 'form-control' } }) }}
-                {{ form_errors(registrationForm.plainPassword) }}
-            </div>
-
-            <!-- Ajout des champs Date of Birth et Gender -->
-            <div class="form-group">
-                {{ form_label(registrationForm.dateOfBirth) }}
-                {{ form_widget(registrationForm.dateOfBirth, { 'attr': { 'class': 'form-control' } }) }}
-                {{ form_errors(registrationForm.dateOfBirth) }}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(registrationForm.gender) }}
-                {{ form_widget(registrationForm.gender, { 'attr': { 'class': 'form-control' } }) }}
-                {{ form_errors(registrationForm.gender) }}
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-
-            {{ form_end(registrationForm) }}
+        {{ form_start(registrationForm) }}
+        <div class="form-group">
+            {{ form_row(registrationForm.firstName) }}
         </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.lastName) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.dateOfBirth) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.gender) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.email) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(registrationForm.plainPassword) }}
+        </div>
+        <button class="btn">Register</button>
+        {{ form_end(registrationForm) }}
     </div>
 {% endblock %}
